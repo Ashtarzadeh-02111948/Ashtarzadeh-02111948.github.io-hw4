@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
             
             }
 
+            if(!isWithinBounds(verticalMin, -50, 50) || !isWith){
+
+            }
+
             // Check if values are within the range
             else if (verticalMin < -50 || verticalMax < -50 || horizontalMin < -50 || horizontalMax < -50 ||
                 verticalMin > 50 || verticalMax > 50 || horizontalMin > 50 || horizontalMax > 50) {
@@ -51,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (verticalMin >= verticalMax || horizontalMin >= horizontalMax) {
                 messages.push("Minimum values should be less than maximum values.");
             }
+
+
+            
 
 
         // ********************************** end of input validation **********************************************
