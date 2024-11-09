@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     // Validate the form when submitted
     $('#tableInput').validate({
