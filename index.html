@@ -1,12 +1,3 @@
-<!--
-File: index.html
-Date Created: 10/12/24
-GUI Assignment: HW3 JS - generating dynamic multiplication table based on user input
-Nika Ashtarzadeh, Nika_Ashtarzadeh@student.uml.edu
-Copyright (c) 2024 by Nika. All rights reserved. May be freely copied or
-excerpted for educational purposes with credit to the author.
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,108 +7,96 @@ excerpted for educational purposes with credit to the author.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Linking bootstrap and my own css to file -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css"> 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 </head>
 
 <body>
 
     <div class="container-fluid">
-      <div class="row">
-          <div class="col-12 text-center page-title">
-              Multiplication Table Online Generator
-          </div>
-      </div>
-  </div>
-  <br>
+        <div class="row">
+            <div class="col-12 text-center page-title">
+                Multiplication Table Online Generator
+            </div>
+        </div>
+    </div>
+    <br>
 
     <h2 style="text-align: center; font-size: large;">Please Enter Table Ranges</h2>
     <br>
 
     <p style="text-align: center;"> Valid values range from -50 to 50 </p>
 
-
-  <!-- Boostrap styled container -->
+    <!-- Bootstrap styled container -->
     <div class="container">
 
-      <!-- Boostrap style form to get user input which only allows numbers since type is set to "number" -->
-        <form id="tableInput">
-
-        <div class="row">
-          <div class="col-md-5">
-            Enter Minimum Value for Multiplicand (Vertical):
-          </div>
-
-          <div class="col-md-auto">
-            <input type="number" id="multiplicandMin" required>
-          </div>
-
-        </div>
-
-        <br>
-
-        <div class="row">
-          <div class="col-md-5">
-            Enter Maximum Value for Multiplicand (Vertical):
-          </div>
-
-          <div class="col-md-auto">
-            <input type="number" id="multiplicandMax" required>
-          </div>
-
-        </div>
-
-        <br>
-
-          <div class="row">
-            <div class="col-md-5">
-            Enter Minimum Value for Multiplier (Horizontal):
-            </div>
-
-            <div class="col-md-auto">
-                <input type="number" id="multiplierMin" required>
-              </div>
-
-          </div>
-
-          <br>
+        <!-- Bootstrap style form to get user input -->
+        <form id="tableInput" method="post">
 
             <div class="row">
                 <div class="col-md-5">
-                Enter Maximum Value for Multiplier (Horizontal):
+                    Enter Minimum Value for Multiplicand (Vertical):
                 </div>
 
                 <div class="col-md-auto">
-                    <input type="number" id="multiplierMax" required>
-                  </div>
+                    <input type="number" id="multiplicandMin" name="multiplicandMin" required>
+                </div>
+            </div>
 
-        </div>
+            <br>
 
-          <!-- Boostrap styled submit button to take you to generatd table-->
+            <div class="row">
+                <div class="col-md-5">
+                    Enter Maximum Value for Multiplicand (Vertical):
+                </div>
 
-        <div class="col-md-12 text-center mt-3">
-            <button class="btn btn-primary" id="generateButton" type="submit">Generate Table</button>
-        </div>
+                <div class="col-md-auto">
+                    <input type="number" id="multiplicandMax" name="multiplicandMax" required>
+                </div>
+            </div>
 
-    </form>
+            <br>
 
-      <!-- Error messages container -->
-      <div id="errorMessages" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-5">
+                    Enter Minimum Value for Multiplier (Horizontal):
+                </div>
 
+                <div class="col-md-auto">
+                    <input type="number" id="multiplierMin" name="multiplierMin" required>
+                </div>
+            </div>
 
-    <!-- Space for JS to create table-->
-    <div id="tableContainer" class="mt-5"></div>
+            <br>
 
-</div> 
+            <div class="row">
+                <div class="col-md-5">
+                    Enter Maximum Value for Multiplier (Horizontal):
+                </div>
 
-      <!-- linking java script to html -->
-      <script src="chart.js"></script>
+                <div class="col-md-auto">
+                    <input type="number" id="multiplierMax" name="multiplierMax" required>
+                </div>
+            </div>
 
-      <!-- linking jquery to html -->
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <!-- Bootstrap styled submit button to generate table -->
+            <div class="col-md-12 text-center mt-3">
+                <button class="btn btn-primary" id="generateButton" type="submit">Generate Table</button>
+            </div>
 
-      
+        </form>
+
+        <!-- Error messages container -->
+        <div id="errorMessages" class="text-danger"></div>
+
+        <!-- Space for JS to create the table -->
+        <div id="tableContainer" class="mt-5"></div>
+
+    </div>
+
+    <!-- Linking JavaScript to HTML -->
+    <script src="chart.js"></script>
+    <script src="app.js"></script>
 
 </body>
-
 </html>
