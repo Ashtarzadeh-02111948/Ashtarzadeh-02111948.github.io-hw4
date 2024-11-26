@@ -1,6 +1,12 @@
-$(document).ready(function() {
-    // Validate the form when submitted
-    $('#tableInput').validate({
+$(document).ready(function () {
+    // Custom validation method to check if max is greater than min
+    $.validator.addMethod("greaterThan", function (value, element, param) {
+        const minValue = parseFloat($(param).val());
+        return !isNaN(minValue) && parseFloat(value) > minValue;
+    }, "Maximum value must be greater than the minimum value.");
+
+    // Jquery validation to the form
+    $("#tableInput").validate({
         rules: {
             multiplicandMin: {
                 required: true,
@@ -41,46 +47,56 @@ $(document).ready(function() {
                 greaterThan: "Maximum value must be greater than the minimum value."
             }
         },
-        errorPlacement: function(error, element) {
-            error.appendTo("#errorMessages"); // Custom placement for error messages
+        errorPlacement: function (error, element) {
+            // Place error message below the corresponding input field
+            error.insertAfter(element);
         },
-        submitHandler: function(form) {
-            // Prevent form submission and generate table
-            event.preventDefault();
-
-            var verticalMin = parseFloat($("#multiplicandMin").val());
-            var verticalMax = parseFloat($("#multiplicandMax").val());
-            var horizontalMin = parseFloat($("#multiplierMin").val());
-            var horizontalMax = parseFloat($("#multiplierMax").val());
-
-            var tableContainer = $("#tableContainer");
-            tableContainer.empty(); // Clear any existing table
-
-            // Generate the table
-            var table = $("<table>").addClass("table table-bordered");
-
-            // Header row
-            var headerRow = $("<tr>").append("<th></th>");
-            for (var j = horizontalMin; j <= horizontalMax; j++) {
-                headerRow.append("<th class='multiplier-header'>" + j + "</th>");
-            }
-            table.append(headerRow);
-
-            // Multiplicand rows
-            for (var i = verticalMin; i <= verticalMax; i++) {
-                var row = $("<tr>").append("<th class='multiplicand-header'>" + i + "</th>");
-                for (var j = horizontalMin; j <= horizontalMax; j++) {
-                    row.append("<td>" + (i * j) + "</td>");
-                }
-                table.append(row);
-            }
-
-            tableContainer.append(table); // Append the table to the container
+        highlight: function (element) {
+            $(element).addClass("is-invalid"); // Highlight invalid fields
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("is-invalid"); // Remove highlight from valid fields
+        },
+        submitHandler: function (form) {
+            generateTable(); // Generate the multiplication table
+            return false; // Prevent default form submission
         }
     });
 
-    // Custom method to check that the max value is greater than min
-    $.validator.addMethod("greaterThan", function(value, element, param) {
-        return parseFloat(value) > parseFloat($(param).val());
-    }, "This value must be greater than the minimum value.");
+    // Function to generate the multiplication table
+    function generateTable() {
+        // Get input values
+        const multiplicandMin = parseInt($("#multiplicandMin").val());
+        const multiplicandMax = parseInt($("#multiplicandMax").val());
+        const multiplierMin = parseInt($("#multiplierMin").val());
+        const multiplierMax = parseInt($("#multiplierMax").val());
+
+        // Clear the existing table
+        $("#tableContainer").empty();
+
+        // Create table
+        const table = $("<table>").addClass("table table-bordered").attr("id", "multiplicationTable");
+
+        // Add header row for multipliers
+        const headerRow = $("<tr>");
+        headerRow.append($("<th>").addClass("multiplier-header").text("")); // Empty top-left corner
+        for (let j = multiplierMin; j <= multiplierMax; j++) {
+            headerRow.append($("<th>").addClass("multiplier-header").text(j));
+        }
+        table.append(headerRow);
+
+        // Add rows for multiplicands and their products
+        for (let i = multiplicandMin; i <= multiplicandMax; i++) {
+            const row = $("<tr>");
+            row.append($("<th>").addClass("multiplicand-header").text(i)); // Left-side multiplicand header
+            for (let j = multiplierMin; j <= multiplierMax; j++) {
+                const cell = $("<td>").text(i * j);
+                row.append(cell);
+            }
+            table.append(row);
+        }
+
+        // Append the table to the container
+        $("#tableContainer").append(table);
+    }
 });

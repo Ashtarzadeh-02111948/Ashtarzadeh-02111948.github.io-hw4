@@ -1,63 +1,63 @@
-/* 
-Created by: Nika Ashtarzadeh
-Email: Nika_Ashtarzadeh@student.uml.edu
-Date: 10/12/24
-*/
-
-
-/*style for main title of page*/
-.page-title{
-    background-color: #231b92; /* Background color for the title */
-    color: white; /* Text color */
-    padding: 10px; /* Padding for spacing */
-    font-size: 2em; /* Font size */
-
+/* Title styling */
+.page-title {
+    background-color: #231b92;
+    color: white;
+    padding: 10px;
+    font-size: 2em;
+    text-align: center; /* Ensure proper alignment */
 }
 
-/*style for table cells */
-#multiplicationTable {
-    width: 100%; /* Full width */
-    table-layout: auto; /* Auto layout for responsiveness */
+/* Table container and cells */
+#tableContainer table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
- /* Style for error message */
- #errorMessages {
-    display: none;
-    margin-top: 10px; /* Space above the error messages */
-    padding: 10px; /* Space inside the error messages box */
-    border: 1px solid red; /* Red border for emphasis */
-    background-color: #f8d7da; /* Light red background */
-    color: #721c24; /* Dark red text color */
+#tableContainer table th,
+#tableContainer table td {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
-/* alternating colors for even and odd */
-.even-row {
-    background-color: #ffffff; /* White for odd rows */
-}
-
-.odd-row {
+/* Alternating row colors */
+#tableContainer table tr:nth-child(even) {
     background-color: #8499f6; /* Light blue for even rows */
 }
 
-/* style for the multiplicands */
+#tableContainer table tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+/* Sticky headers for multiplicand and multiplier */
 .multiplicand-header {
-    color: white; 
-    font-weight: bold; 
-    background-color: #231b92; 
-
-    position: sticky; /* sticks the multiplier to the page even when scrolling */
-
-    left: 0; /* Position the multiplicands at the left */
-    z-index: 9; /* Ensures left header stays above other content */
+    color: white;
+    font-weight: bold;
+    background-color: #231b92;
+    position: sticky;
+    left: 0;
+    z-index: 9;
 }
 
-/* style for the multipliers */
 .multiplier-header {
-    color: white; 
-    font-weight: bold; 
-    background-color: #231b92; 
-    position: sticky; /* sticks the multiplier to the page even when scrolling */
-
-    top: 0; /* Position the multipliers at the top */
-    z-index: 10; /* ensures multiplier stays top layer over content  */
+    color: white;
+    font-weight: bold;
+    background-color: #231b92;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
+
+/* Error message styling */
+label.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid red;
+    font-size: 0.9em;
+    display: block;
+}
+
+
