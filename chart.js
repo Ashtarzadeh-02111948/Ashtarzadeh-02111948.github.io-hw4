@@ -11,7 +11,7 @@ $(document).ready(function () {
         return !isNaN(minValue) && parseFloat(value) > minValue;
     }, "Maximum value must be greater than the minimum value.");
 
-    // Jquery validation to the form
+    // Jquery validation plugin to the form for input validation as instructed
     $("#tableInput").validate({
         rules: {
             multiplicandMin: {
