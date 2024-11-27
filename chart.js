@@ -1,3 +1,9 @@
+/* 
+Created by: Nika Ashtarzadeh
+Email: Nika_Ashtarzadeh@student.uml.edu
+Date: 11/26/24
+*/
+
 $(document).ready(function () {
     // Custom validation method to check if max is greater than min
     $.validator.addMethod("greaterThan", function (value, element, param) {
