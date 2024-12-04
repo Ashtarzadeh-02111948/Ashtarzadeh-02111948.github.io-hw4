@@ -11,6 +11,8 @@ $(document).ready(function () {
         return !isNaN(minValue) && parseFloat(value) > minValue;
     }, "Maximum value must be greater than the minimum value.");
 
+
+
     // Jquery validation plugin to the form for input validation as instructed
     $("#tableInput").validate({
         rules: {
@@ -68,6 +70,9 @@ $(document).ready(function () {
             return false; // Prevent default form submission
         }
     });
+
+
+
 
     // Function to generate the multiplication table
     function generateTable() {
